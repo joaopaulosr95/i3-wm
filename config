@@ -1,0 +1,184 @@
+set $mod Mod4
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:Source Code Pro for PowerLine 9
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id exec rofi -fg "#f1f1f1" -bg "#333333" -hlfg "#ffffff" -hlbg "#336699" -show run -font "Terminus 10" -lines 6 -i -separator-style solid -opacity "90"
+bindsym F9  exec "rofi -show-icons -modi combi -show combi -combi-modi run,drun"
+bindsym F12 exec  rofi -show-icons -show window
+
+# Toggle border
+bindsym $mod+x border toggle
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# workspace settings
+set $w01 "1: internet"
+for_window [class=".*Google-chrome.*"] move to workspace $w01
+for_window [instance="^crx.*$" window_role="pop-up"]  floating enable
+for_window [instance="^crx.*$" window_role="pop-up"]  sticky   enable
+
+set $w02 "2: mail/irc"
+for_window [class=".*Thunderbird.*"] move to workspace $w02
+for_window [class=".*Hexchat.*"] move to workspace $w02
+
+set $w03 "3: term"
+set $w04 "4: code"
+for_window [class=".*(Code).*"] move to workspace $w04 floating enable
+
+set $w05 "5: code/vms"
+for_window [class=".*Virt-manager.*"] move to workspace $w05
+
+set $w06 "6: music"
+for_window [class=".*Spotify.*"] move to workspace $w06
+for_window [class=".*vlc.*"] move to workspace $w06 floating enable
+
+set $w07 "7: files"
+
+set $w08 "8:"
+
+set $w09 "9"
+
+set $w10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $w01
+bindsym $mod+2 workspace $w02
+bindsym $mod+3 workspace $w03
+bindsym $mod+4 workspace $w04
+bindsym $mod+5 workspace $w05
+bindsym $mod+6 workspace $w06
+bindsym $mod+7 workspace $w07
+bindsym $mod+8 workspace $w08
+bindsym $mod+9 workspace $w09
+bindsym $mod+0 workspace $w10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $w01
+bindsym $mod+Shift+2 move container to workspace $w02
+bindsym $mod+Shift+3 move container to workspace $w03
+bindsym $mod+Shift+4 move container to workspace $w04
+bindsym $mod+Shift+5 move container to workspace $w05
+bindsym $mod+Shift+6 move container to workspace $w06
+bindsym $mod+Shift+7 move container to workspace $w07
+bindsym $mod+Shift+8 move container to workspace $w08
+bindsym $mod+Shift+9 move container to workspace $w09
+bindsym $mod+Shift+0 move container to workspace $w10
+
+# Prepend title with program name
+for_window [class=".*"] title_format "%class - %title"
+
+# open certain windows in floating mode
+for_window [class="Gnome-calculator"] floating enable
+for_window [class="Pidgin"] floating enable
+for_window [class="Gnome-tweaks"]  floating enable
+
+for_window [title="Terminator Preferences"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # Pressing left will shrink the window’s width.
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# bar
+bar {
+	font pango:Source Code Pro 8, Awesome 8
+	tray_output all
+	status_command i3blocks -c ~/.i3/i3blocks.conf
+	position bottom
+	colors {
+		# colorclass       border     background text
+    background         #222222
+    statusline         #dddddd
+    separator          #666666
+    focused_workspace  #0088CC    #0088CC    #ffffff
+    active_workspace   #333333    #333333    #ffffff
+    inactive_workspace #333333    #333333    #888888
+    urgent_workspace   #2f343a    #900000    #ffffff
+	}
+}
+
+# i3-lock
+bindsym $mod+l exec ~/.i3/lock.sh
+exec --no-startup-id feh --bg-scale ~/.i3/bg/sudo.jpg
+
+# startup programs
+exec --no-startup-id dunst
+exec --no-startup-id numlockx on
+
+# volume
+bindsym XF86AudioRaiseVolume exec ~/.i3/volume_up.sh
+bindsym XF86AudioLowerVolume exec ~/.i3/volume_down.sh
+bindsym XF86AudioMute exec ~/.i3/volume_mute.sh
+
+# music
+bindsym XF86AudioPlay exec playerctl 'play-pause'
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# take a screenshot
+bindsym --release Shift+Print exec --no-startup-id import ~/Pictures/screenshot-`/bin/date +%Y%m%d-%H:%M:%S`.png
+bindsym --release Print exec --no-startup-id import -window root ~/Pictures/screenshot-`/bin/date +%Y%m%d-%H:%M:%S`.png
+
