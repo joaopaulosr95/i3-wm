@@ -65,7 +65,7 @@ for_window [class=".*Hexchat.*"] move to workspace $w02
 
 set $w03 "3: term"
 set $w04 "4: code"
-for_window [class=".*(Code).*"] move to workspace $w04 floating enable
+for_window [class=".*(Code).*"] move to workspace $w04
 
 set $w05 "5: code/vms"
 for_window [class=".*Virt-manager.*"] move to workspace $w05
@@ -129,22 +129,22 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # Pressing left will shrink the window’s width.
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
+  # Pressing left will shrink the window’s width.
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
 # bar
 bar {
-	font pango:Source Code Pro 8, Awesome 8
+  font pango:Source Code Pro 8, Awesome 8
 	tray_output all
 	status_command i3blocks -c ~/.i3/i3blocks.conf
 	position bottom
