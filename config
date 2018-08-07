@@ -68,7 +68,7 @@ set $w04 "4: code"
 for_window [class=".*(Code).*"] move to workspace $w04
 
 set $w05 "5: code/vms"
-for_window [class=".*Virt-manager.*"] move to workspace $w05
+for_window [class=".*Virt-manager.*"] move to workspace $w05 floating enable
 
 set $w06 "6: music"
 for_window [class=".*Spotify.*"] move to workspace $w06
@@ -143,7 +143,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # bar
-bar {
+bar{
   font pango:Source Code Pro 8, Awesome 8
 	tray_output all
 	status_command i3blocks -c ~/.i3/i3blocks.conf
