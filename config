@@ -8,7 +8,7 @@ font pango:Source Code Pro for PowerLine 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -55,32 +55,40 @@ bindsym $mod+space focus mode_toggle
 
 # workspace settings
 set $w01 "1: internet"
-for_window [class=".*Google-chrome.*"] move to workspace $w01
-for_window [instance="^crx.*$" window_role="pop-up"]  floating enable
-for_window [instance="^crx.*$" window_role="pop-up"]  sticky   enable
+for_window [class=".*Google-chrome.*"]                  move to workspace $w01
+for_window [instance="^crx.*$" window_role="pop-up"]    floating enable
+for_window [instance="^crx.*$" window_role="pop-up"]    sticky   enable
 
 set $w02 "2: mail/irc"
-for_window [class=".*Thunderbird.*"] move to workspace $w02
-for_window [class=".*Hexchat.*"] move to workspace $w02
+for_window [class=".*Thunderbird.*"]                    move to workspace $w02
+for_window [class=".*Hexchat.*"]                        move to workspace $w02
 
 set $w03 "3: term"
-set $w04 "4: code"
-for_window [class=".*(Code).*"] move to workspace $w04
+set $w04 "4: term"
+set $w05 "5: term/code"
+for_window [class=".*(Code).*"]                         move to workspace $w05
 
-set $w05 "5: code/vms"
-for_window [class=".*Virt-manager.*"] move to workspace $w05 floating enable
+set $w06 "6: code/vms"
+for_window [class=".*Virt-manager.*"]                   move to workspace $w06 floating enable
 
-set $w06 "6: music"
-for_window [class=".*Spotify.*"] move to workspace $w06
-for_window [class=".*vlc.*"] move to workspace $w06 floating enable
+set $w07 "7: music"
+for_window [class=".*Spotify.*"]                        move to workspace $w07
+for_window [class=".*vlc.*"]                            move to workspace $w07 floating enable
 
-set $w07 "7: files"
-
-set $w08 "8:"
+set $w08 "8: files"
+for_window [class=".*Nautilus.*"]                       move to workspace $w08
+for_window [class=".*Pcmanfm.*"]                        move to workspace $w08
 
 set $w09 "9"
-
 set $w10 "10"
+
+for_window [class=".*"]                                 title_format "%class - %title"
+for_window [class="Gnome-calculator"]                   floating enable
+for_window [class="Pidgin"]                             floating enable
+for_window [class="Gnome-tweaks"]                       floating enable
+for_window [class="Lxappearance"]                       floating enable
+for_window [title="Terminator Preferences"]             floating enable
+for_window [window_role="pop-up"]                       floating enable
 
 # switch to workspace
 bindsym $mod+1 workspace $w01
@@ -105,18 +113,6 @@ bindsym $mod+Shift+7 move container to workspace $w07
 bindsym $mod+Shift+8 move container to workspace $w08
 bindsym $mod+Shift+9 move container to workspace $w09
 bindsym $mod+Shift+0 move container to workspace $w10
-
-# Prepend title with program name
-for_window [class=".*"] title_format "%class - %title"
-
-# open certain windows in floating mode
-for_window [class="Gnome-calculator"] floating enable
-for_window [class="Pidgin"] floating enable
-for_window [class="Gnome-tweaks"]  floating enable
-
-for_window [title="Terminator Preferences"] floating enable
-
-for_window [window_role="pop-up"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -143,13 +139,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # bar
-bar{
+bar {
   font pango:Source Code Pro 8, Awesome 8
-	tray_output all
-	status_command i3blocks -c ~/.i3/i3blocks.conf
-	position bottom
-	colors {
-		# colorclass       border     background text
+  tray_output all
+  status_command i3blocks -c ~/.i3/i3blocks.conf
+  position top
+  colors {
+    # colorclass       border     background text
     background         #222222
     statusline         #dddddd
     separator          #666666
@@ -157,15 +153,15 @@ bar{
     active_workspace   #333333    #333333    #ffffff
     inactive_workspace #333333    #333333    #888888
     urgent_workspace   #2f343a    #900000    #ffffff
-	}
+  }
 }
 
 # i3-lock
 bindsym $mod+l exec "${HOME}/.i3/lock.sh"
 exec xautolock -time 15 -locker "${HOME}/.i3/lock.sh" &
-exec --no-startup-id feh --bg-scale ~/.i3/bg/sudo.jpg
 
 # startup programs
+exec --no-startup-id feh --bg-scale ~/.i3/bg/sudo.jpg
 exec --no-startup-id dunst
 exec --no-startup-id numlockx on
 
