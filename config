@@ -161,7 +161,8 @@ bar{
 }
 
 # i3-lock
-bindsym $mod+l exec ~/.i3/lock.sh
+bindsym $mod+l exec "${HOME}/.i3/lock.sh"
+exec xautolock -time 15 -locker "${HOME}/.i3/lock.sh" &
 exec --no-startup-id feh --bg-scale ~/.i3/bg/sudo.jpg
 
 # startup programs
