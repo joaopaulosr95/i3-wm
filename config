@@ -54,15 +54,13 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # workspace settings
-set $w01 "1: internet"
+set $w01 "1: internet/mail"
 for_window [class=".*Google-chrome.*"]                  move to workspace $w01
 for_window [instance="^crx.*$" window_role="pop-up"]    floating enable
 for_window [instance="^crx.*$" window_role="pop-up"]    sticky   enable
+for_window [class=".*Thunderbird.*"]                    move to workspace $w01
 
-set $w02 "2: mail/irc"
-for_window [class=".*Thunderbird.*"]                    move to workspace $w02
-for_window [class=".*Hexchat.*"]                        move to workspace $w02
-
+set $w02 "2: term"
 set $w03 "3: term"
 set $w04 "4: term"
 set $w05 "5: term/code"
@@ -80,6 +78,8 @@ for_window [class=".*Nautilus.*"]                       move to workspace $w08
 for_window [class=".*Pcmanfm.*"]                        move to workspace $w08
 
 set $w09 "9"
+for_window [class=".*Hexchat.*"]                        move to workspace $w09
+
 set $w10 "10"
 
 for_window [class=".*"]                                 title_format "%class - %title"
