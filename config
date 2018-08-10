@@ -14,9 +14,8 @@ bindsym $mod+Return exec gnome-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id exec rofi -fg "#f1f1f1" -bg "#333333" -hlfg "#ffffff" -hlbg "#336699" -show run -font "Terminus 10" -lines 6 -i -separator-style solid -opacity "90"
-bindsym F9  exec "rofi -show-icons -modi combi -show combi -combi-modi run,drun"
-bindsym F12 exec  rofi -show-icons -show window
+bindsym $mod+d  exec "rofi -show-icons -modi combi -show combi -combi-modi run,drun"
+bindsym $mod+Tab exec rofi -show-icons -show window
 
 # Toggle border
 bindsym $mod+x border toggle
