@@ -1,3 +1,4 @@
+# set `windows` key as $mod
 set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -8,7 +9,7 @@ font pango:Source Code Pro for PowerLine 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -53,40 +54,42 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # workspace settings
-set $w01 "1: internet/mail"
+set $w01 "1"
 for_window [class=".*Google-chrome.*"]                  move to workspace $w01
-for_window [instance="^crx.*$" window_role="pop-up"]    floating enable
-for_window [instance="^crx.*$" window_role="pop-up"]    sticky   enable
-for_window [class=".*Thunderbird.*"]                    move to workspace $w01
 
-set $w02 "2: term"
-set $w03 "3: term"
-set $w04 "4: term"
-set $w05 "5: term/code"
-for_window [class=".*(Code).*"]                         move to workspace $w05
+set $w02 "2"
+for_window [class=".*Thunderbird.*"]                    move to	workspace $w02
+for_window [class=".*Hexchat.*"]                        move to	workspace $w02
 
-set $w06 "6: code/vms"
-for_window [class=".*Virt-manager.*"]                   move to workspace $w06 floating enable
+set $w03 "3"
+set $w04 "4"
+set $w05 "5"
+set $w06 "6"
 
-set $w07 "7: music"
+set $w07 "7"
 for_window [class=".*Spotify.*"]                        move to workspace $w07
-for_window [class=".*vlc.*"]                            move to workspace $w07 floating enable
 
-set $w08 "8: files"
-for_window [class=".*Nautilus.*"]                       move to workspace $w08
-for_window [class=".*Pcmanfm.*"]                        move to workspace $w08
-
+set $w08 "8"
 set $w09 "9"
-for_window [class=".*Hexchat.*"]                        move to workspace $w09
-
 set $w10 "10"
 
+floating_minimum_size 100 x 100
+floating_maximum_size 1500 x 900
+
 for_window [class=".*"]                                 title_format "%class - %title"
+for_window [class="Code"]                         			floating enable
+for_window [class="Eog"]																floating enable
 for_window [class="Gnome-calculator"]                   floating enable
-for_window [class="Pidgin"]                             floating enable
+for_window [class="Gnome-system-monitor"]               floating enable
 for_window [class="Gnome-tweaks"]                       floating enable
 for_window [class="Lxappearance"]                       floating enable
-for_window [title="Terminator Preferences"]             floating enable
+for_window [class="Nautilus"]                       		floating enable
+for_window [class="Pcmanfm"]                        		floating enable
+for_window [class="Pidgin"]                             floating enable
+for_window [title="Thunderbird Preferences"]						floating enable
+for_window [class="Virt-manager"]                   		floating enable
+for_window [class="vlc"]                            		floating enable
+for_window [instance="^crx.*$" window_role="pop-up"]    floating enable
 for_window [window_role="pop-up"]                       floating enable
 
 # switch to workspace
@@ -146,7 +149,7 @@ bar {
   colors {
     # colorclass       border     background text
     background         #222222
-    statusline         #dddddd
+    statusline         dddddd
     separator          #666666
     focused_workspace  #0088CC    #0088CC    #ffffff
     active_workspace   #333333    #333333    #ffffff
@@ -160,7 +163,7 @@ bindsym $mod+l exec "${HOME}/.i3/lock.sh"
 exec xautolock -time 15 -locker "${HOME}/.i3/lock.sh" &
 
 # startup programs
-exec --no-startup-id feh --bg-scale ~/.i3/bg/sudo.jpg
+exec --no-startup-id feh --bg-scale ~/.i3/bg/lunar-phases.jpg
 exec --no-startup-id dunst
 exec --no-startup-id numlockx on
 
