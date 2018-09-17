@@ -55,20 +55,12 @@ bindsym $mod+space focus mode_toggle
 
 # workspace settings
 set $w01 "1"
-for_window [class=".*Google-chrome.*"]                  move to workspace $w01
-
 set $w02 "2"
-for_window [class=".*Thunderbird.*"]                    move to	workspace $w02
-for_window [class=".*Hexchat.*"]                        move to	workspace $w02
-
 set $w03 "3"
 set $w04 "4"
 set $w05 "5"
 set $w06 "6"
-
 set $w07 "7"
-for_window [class=".*Spotify.*"]                        move to workspace $w07
-
 set $w08 "8"
 set $w09 "9"
 set $w10 "10"
