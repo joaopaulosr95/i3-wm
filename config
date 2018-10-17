@@ -79,6 +79,7 @@ for_window [class="Nautilus"]                       		floating enable
 for_window [class="Pcmanfm"]                        		floating enable
 for_window [class="Pidgin"]                             floating enable
 for_window [title="Thunderbird Preferences"]						floating enable
+for_window [title="^Write:.*$"]													floating enable
 for_window [class="Virt-manager"]                   		floating enable
 for_window [class="vlc"]                            		floating enable
 for_window [instance="^crx.*$" window_role="pop-up"]    floating enable
