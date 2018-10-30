@@ -54,30 +54,33 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # workspace settings
-set $w01 "1"
-set $w02 "2"
+set $w01 "1 www"
+set $w02 "2 mail"
 set $w03 "3"
-set $w04 "4"
+set $w04 "4 term"
 set $w05 "5"
 set $w06 "6"
 set $w07 "7"
-set $w08 "8"
+set $w08 "8 music"
 set $w09 "9"
 set $w10 "10"
 
 floating_minimum_size 100 x 100
-floating_maximum_size 1500 x 900
+floating_maximum_size 1800 x 1000
 
 for_window [class=".*"]                                 title_format "%class - %title"
-for_window [class="Code"]                         			floating enable
+for_window [class="Code"]                         											move to workspace $w02
+#for_window [class="Eclipse"]                       											move to workspace $w02
 for_window [class="Eog"]																floating enable
 for_window [class="Gnome-calculator"]                   floating enable
 for_window [class="Gnome-system-monitor"]               floating enable
+#for_window [class="Gnome-terminal"]                    	floating enable
 for_window [class="Gnome-tweaks"]                       floating enable
 for_window [class="Lxappearance"]                       floating enable
 for_window [class="Nautilus"]                       		floating enable
 for_window [class="Pcmanfm"]                        		floating enable
 for_window [class="Pidgin"]                             floating enable
+for_window [title="Spotify"]														floating enable	move to workspace $w08
 for_window [title="Thunderbird Preferences"]						floating enable
 for_window [title="^Write:.*$"]													floating enable
 for_window [class="Virt-manager"]                   		floating enable
