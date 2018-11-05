@@ -69,7 +69,8 @@ floating_minimum_size 100 x 100
 floating_maximum_size 1800 x 1000
 
 for_window [class=".*"]                                 title_format "%class - %title"
-for_window [class="Code"]                         											move to workspace $w02
+for_window [title="^Arandr.*$"]													floating enable
+#for_window [class="Code"]                         											move to workspace $w02
 #for_window [class="Eclipse"]                       											move to workspace $w02
 for_window [class="Eog"]																floating enable
 for_window [class="Gnome-calculator"]                   floating enable
@@ -162,6 +163,7 @@ exec xautolock -time 15 -locker "${HOME}/.i3/lock.sh" &
 exec --no-startup-id feh --bg-scale ~/.i3/bg/lunar-phases.jpg
 exec --no-startup-id dunst
 exec --no-startup-id numlockx on
+exec "${HOME}/bin/launch_insync.sh"
 
 # volume
 bindsym XF86AudioRaiseVolume exec ~/.i3/volume_up.sh
